@@ -39,9 +39,9 @@ public class Main {
         RefreshClipsTask task = new RefreshClipsTask();
         timer.scheduleAtFixedRate(task, 0, REFRESH_TIME);
 
-        Scanner scanner = new Scanner(System.in);
-        while(!scanner.nextLine().equals("Quit")){}
-        System.exit(0);
+//        Scanner scanner = new Scanner(System.in);
+//        while(!scanner.nextLine().equals("Quit")){}
+//        System.exit(0);
     }
 
 }
