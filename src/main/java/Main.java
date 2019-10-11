@@ -7,7 +7,7 @@ import java.util.*;
 
 public class Main {
 
-    private static final long REFRESH_TIME = 900000; // 900000ms = 15 minutes.
+    private static final long REFRESH_TIME_IN_MINUTES = 6;
 
     private static FileInputStream serviceAccount;
     private static FirebaseOptions options;
@@ -37,7 +37,7 @@ public class Main {
 
         Timer timer = new Timer();
         RefreshClipsTask task = new RefreshClipsTask();
-        timer.scheduleAtFixedRate(task, 0, REFRESH_TIME);
+        timer.scheduleAtFixedRate(task, 0, REFRESH_TIME_IN_MINUTES * 60 * 1000);
 
         Scanner scanner = new Scanner(System.in);
         while(!scanner.nextLine().equals("Quit")){}

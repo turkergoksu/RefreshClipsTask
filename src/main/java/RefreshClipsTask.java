@@ -192,6 +192,9 @@ public class RefreshClipsTask extends TimerTask {
     }
 
     private void oneDay(Date firstTimeInterval, Date now){
+        System.out.println("--------------------------------------------------");
+        System.out.println("Getting oneDay clips from Twitch API");
+
         for (String streamerID : streamerIDList){
             JsonArray jsonArray = getClipsAsJsonArray(streamerID, 20, firstTimeInterval, now);
             for (JsonElement jsonElement : jsonArray){
@@ -225,25 +228,40 @@ public class RefreshClipsTask extends TimerTask {
         DatabaseReference oneDayReference = FirebaseDatabase.getInstance()
                 .getReference().child("TR").child("oneDay");
 
-        oneDayReference.removeValue(new DatabaseReference.CompletionListener() {
+        oneDayReference.child("clips").setValue(oneDayClipArrayList, new DatabaseReference.CompletionListener() {
             @Override
             public void onComplete(DatabaseError error, DatabaseReference ref) {
-                System.out.println("Successfully removed oneDay clips!");
-                oneDayReference.child("clips").setValue(oneDayClipArrayList, new DatabaseReference.CompletionListener() {
-                    @Override
-                    public void onComplete(DatabaseError error, DatabaseReference ref) {
-                        System.out.println("Successfully pushed oneDay clips!");
-                        oneDayNotSortedHashMap = null;
-                        oneDaySortedHashMap = null;
-                        oneDayClipArrayList = null;
-                        System.gc();
-                    }
-                });
+                System.out.println("Successfully pushed oneDay clips!");
+                System.out.println("--------------------------------------------------");
+                oneDayNotSortedHashMap = null;
+                oneDaySortedHashMap = null;
+                oneDayClipArrayList = null;
+                System.gc();
             }
         });
+
+//        oneDayReference.removeValue(new DatabaseReference.CompletionListener() {
+//            @Override
+//            public void onComplete(DatabaseError error, DatabaseReference ref) {
+//                System.out.println("Successfully removed oneDay clips!");
+//                oneDayReference.child("clips").setValue(oneDayClipArrayList, new DatabaseReference.CompletionListener() {
+//                    @Override
+//                    public void onComplete(DatabaseError error, DatabaseReference ref) {
+//                        System.out.println("Successfully pushed oneDay clips!");
+//                        oneDayNotSortedHashMap = null;
+//                        oneDaySortedHashMap = null;
+//                        oneDayClipArrayList = null;
+//                        System.gc();
+//                    }
+//                });
+//            }
+//        });
     }
 
     private void oneWeek(Date firstTimeInterval, Date now){
+        System.out.println("--------------------------------------------------");
+        System.out.println("Getting oneWeek clips from Twitch API");
+
         for (String streamerID : streamerIDList){
             JsonArray jsonArray = getClipsAsJsonArray(streamerID, 20, firstTimeInterval, now);
             for (JsonElement jsonElement : jsonArray){
@@ -277,25 +295,40 @@ public class RefreshClipsTask extends TimerTask {
         DatabaseReference oneWeekReference = FirebaseDatabase.getInstance()
                 .getReference().child("TR").child("oneWeek");
 
-        oneWeekReference.removeValue(new DatabaseReference.CompletionListener() {
+        oneWeekReference.child("clips").setValue(oneWeekClipArrayList, new DatabaseReference.CompletionListener() {
             @Override
             public void onComplete(DatabaseError error, DatabaseReference ref) {
-                System.out.println("Successfully removed oneWeek clips!");
-                oneWeekReference.child("clips").setValue(oneWeekClipArrayList, new DatabaseReference.CompletionListener() {
-                    @Override
-                    public void onComplete(DatabaseError error, DatabaseReference ref) {
-                        System.out.println("Successfully pushed oneWeek clips!");
-                        oneWeekNotSortedHashMap = null;
-                        oneWeekSortedHashMap = null;
-                        oneWeekClipArrayList = null;
-                        System.gc();
-                    }
-                });
+                System.out.println("Successfully pushed oneWeek clips!");
+                System.out.println("--------------------------------------------------");
+                oneWeekNotSortedHashMap = null;
+                oneWeekSortedHashMap = null;
+                oneWeekClipArrayList = null;
+                System.gc();
             }
         });
+
+//        oneWeekReference.removeValue(new DatabaseReference.CompletionListener() {
+//            @Override
+//            public void onComplete(DatabaseError error, DatabaseReference ref) {
+//                System.out.println("Successfully removed oneWeek clips!");
+//                oneWeekReference.child("clips").setValue(oneWeekClipArrayList, new DatabaseReference.CompletionListener() {
+//                    @Override
+//                    public void onComplete(DatabaseError error, DatabaseReference ref) {
+//                        System.out.println("Successfully pushed oneWeek clips!");
+//                        oneWeekNotSortedHashMap = null;
+//                        oneWeekSortedHashMap = null;
+//                        oneWeekClipArrayList = null;
+//                        System.gc();
+//                    }
+//                });
+//            }
+//        });
     }
 
     private void oneMonth(Date firstTimeInterval, Date now){
+        System.out.println("--------------------------------------------------");
+        System.out.println("Getting oneMonth clips from Twitch API");
+
         for (String streamerID : streamerIDList){
             JsonArray jsonArray = getClipsAsJsonArray(streamerID, 20, firstTimeInterval, now);
             for (JsonElement jsonElement : jsonArray){
@@ -329,24 +362,37 @@ public class RefreshClipsTask extends TimerTask {
         DatabaseReference oneMonthReference = FirebaseDatabase.getInstance()
                 .getReference().child("TR").child("oneMonth");
 
-        oneMonthReference.removeValue(new DatabaseReference.CompletionListener() {
+        oneMonthReference.child("clips").setValue(oneMonthClipArrayList, new DatabaseReference.CompletionListener() {
             @Override
             public void onComplete(DatabaseError error, DatabaseReference ref) {
-                System.out.println("Successfully removed oneMonth clips!");
-                oneMonthReference.child("clips").setValue(oneMonthClipArrayList, new DatabaseReference.CompletionListener() {
-                    @Override
-                    public void onComplete(DatabaseError error, DatabaseReference ref) {
-                        System.out.println("Successfully pushed oneMonth clips!");
-                        oneMonthNotSortedHashMap = null;
-                        oneMonthSortedHashMap = null;
-                        oneMonthClipArrayList = null;
-                        System.gc();
-
+                System.out.println("Successfully pushed oneMonth clips!");
+                System.out.println("--------------------------------------------------");
+                oneMonthNotSortedHashMap = null;
+                oneMonthSortedHashMap = null;
+                oneMonthClipArrayList = null;
+                System.gc();
 //                        System.exit(0);
-                    }
-                });
             }
         });
+
+//        oneMonthReference.removeValue(new DatabaseReference.CompletionListener() {
+//            @Override
+//            public void onComplete(DatabaseError error, DatabaseReference ref) {
+//                System.out.println("Successfully removed oneMonth clips!");
+//                oneMonthReference.child("clips").setValue(oneMonthClipArrayList, new DatabaseReference.CompletionListener() {
+//                    @Override
+//                    public void onComplete(DatabaseError error, DatabaseReference ref) {
+//                        System.out.println("Successfully pushed oneMonth clips!");
+//                        oneMonthNotSortedHashMap = null;
+//                        oneMonthSortedHashMap = null;
+//                        oneMonthClipArrayList = null;
+//                        System.gc();
+//
+////                        System.exit(0);
+//                    }
+//                });
+//            }
+//        });
     }
 
 }
